@@ -6,8 +6,8 @@ This is a backend application for placing and managing bets on Formula 1 events 
 
 This RESTful service allows users to:
 - List Formula 1 events (with filtering)
-- Place a bet on a driver for a specific event
-- Simulate event outcomes and update bet results
+- Place a bet on a driver for a specific event (TBD)
+- Simulate event outcomes and update bet results (TBD)
 
 > Events and driver data are retrieved from the open-source API: [https://openf1.org](https://openf1.org)
 
@@ -18,7 +18,6 @@ This RESTful service allows users to:
 
 - [Java 21 JDK](https://adoptium.net/en-GB/temurin/releases/)
 - [Maven](https://maven.apache.org/download.cgi)
-- [Podman](https://podman.io/) or [Docker](https://www.docker.com/)
 
 ### Installation
 
@@ -27,63 +26,30 @@ This RESTful service allows users to:
    git clone https://github.com/genezeiniss/formula-one-betting.git
    cd formula-one-betting
    ```
-2. Make the script executable
-
+2. **Build the application**
 ```bash
-   chmod +x start-dev.sh
+   mvn clean install
 ```
-
-3. Run the development environment
+3. **Run the application**
 ```bash
-   ./start-dev.sh
+   mvn spring-boot:run
 ```
-
-This will:
-
-* Start a PostgreSQL container
-* Run database migrations (Liquibase)
-* Generate jOOQ classes
-* Launch the Spring Boot application at http://localhost:8080
 
 ---
 ## 🔌 API Endpoints
 1. List F1 Events
 
 ```bash
-    GET /api/formula1/events
+    GET /api/formula-one/events
 ```
 
-**Query Parameters (optional)**:
+**Query Parameters**:
 
 * year 
-* country 
-* sessionType
+* country (optional)
+* sessionType (optional)
 
 **Response**: List of sessions and associated driver odds.
-
-2. Place a Bet
-
-```bash
-    POST /api/formula1/bet
-```
-
-**Request Body":
-```
-{
-    "userId": "user-123",
-    "eventId": "event-456",
-    "driverId": "driver-789",
-    "amount": 20.0
-}
-```
-
-**Response**: Details of the placed bet and updated balance.
-
-3. Simulate Event Outcome
-```bash
-    POST /api/formula1/events/{eventId}/outcome
-```
-**Response**: Bet outcomes and updated user balances.
 
 ---
 ## 👤 User Info

@@ -9,5 +9,4 @@ class FormulaOneBettingApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
